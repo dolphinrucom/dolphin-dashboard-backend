@@ -9,9 +9,7 @@ services:
     image: mariadb:10
     volumes:
       - ./dbdata:/var/lib/mysql
-    environment:
-      - MYSQL_DATABASE=dolphin
-      - MYSQL_ROOT_PASSWORD=123456
+    env_file: src/.env
     hostname: dolphin-dashboard-backend-db
     ports:
       - "43832:3306"
