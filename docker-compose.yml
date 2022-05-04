@@ -12,7 +12,7 @@ services:
     image: mariadb:10
     volumes:
       - ./dbdata:/var/lib/mysql
-    env_file: src/.env
+    env_file: ./src/.env
     hostname: dolphin-dashboard-backend-db
     ports:
       - "43832:3306"
