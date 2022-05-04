@@ -4,21 +4,16 @@ services:
     build: .
     volumes:
       - "./src:/app"
-    networks:
-      - dolphin-dashbord
-    depends_on:
-      - dolphin-dashboard-backend-db
   dolphin-dashboard-backend-db:
+
     image: mariadb:10
     volumes:
       - ./dbdata:/var/lib/mysql
-    env_file: ./src/.env
+    environment:
+      - MYSQL_DATABASE=dolphin
+      - MYSQL_ROOT_PASSWORD=123456
     hostname: dolphin-dashboard-backend-db
     ports:
       - "43832:3306"
-    networks:
-      - dolphin-dashbord
 volumes:
   dbdata:
-networks:
-  dolphin-dashbord:
