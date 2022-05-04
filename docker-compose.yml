@@ -1,0 +1,19 @@
+version: '3'
+services:
+  dolphin-dashboard-backend-php:
+    build: .
+    volumes:
+      - "./src:/app"
+  dolphin-dashboard-backend-db:
+
+    image: mariadb:10
+    volumes:
+      - ./dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=dolphin
+      - MYSQL_ROOT_PASSWORD=123456
+    hostname: dolphin-dashboard-backend-db
+    ports:
+      - "43832:3306"
+volumes:
+  dbdata:

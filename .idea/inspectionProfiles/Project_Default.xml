@@ -1,0 +1,44 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="CssBrowserCompatibilityForProperties" enabled="false" level="INFORMATION" enabled_by_default="false" />
+    <inspection_tool class="CssConvertColorToHexInspection" enabled="false" level="INFORMATION" enabled_by_default="false" />
+    <inspection_tool class="CssConvertColorToRgbInspection" enabled="false" level="INFORMATION" enabled_by_default="false" />
+    <inspection_tool class="CssInvalidAtRule" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssInvalidCharsetRule" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssInvalidFunction" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssInvalidHtmlTagReference" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssInvalidImport" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssInvalidMediaFeature" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssInvalidPropertyValue" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssInvalidPseudoSelector" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssMissingComma" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssMissingSemicolon" enabled="false" level="INFORMATION" enabled_by_default="false" />
+    <inspection_tool class="CssNegativeValue" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssNoGenericFontName" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssNonIntegerLengthInPixels" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssOverwrittenProperties" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssRedundantUnit" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssReplaceWithShorthandSafely" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssUnknownProperty" enabled="true" level="INFORMATION" enabled_by_default="true">
+      <option name="myCustomPropertiesEnabled" value="false" />
+      <option name="myIgnoreVendorSpecificProperties" value="false" />
+      <option name="myCustomPropertiesList">
+        <value>
+          <list size="0" />
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="CssUnknownTarget" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssUnresolvedClassInComposesRule" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssUnresolvedCustomProperty" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CssUnusedSymbol" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="PhpCSValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="CODING_STANDARD" value="Custom" />
+      <option name="CUSTOM_RULESET_PATH" value="$USER_HOME$/scripts/new/anty-backend/phpcs.xml" />
+      <option name="WARNING_HIGHLIGHT_LEVEL_NAME" value="ERROR" />
+      <option name="EXTENSIONS" value="php,js,css,inc" />
+    </inspection_tool>
+    <inspection_tool class="Stylelint" enabled="false" level="INFORMATION" enabled_by_default="false" />
+  </profile>
+</component>
