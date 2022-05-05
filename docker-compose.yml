@@ -2,11 +2,13 @@ version: '3'
 services:
   dolphin-dashboard-backend-php:
     build: .
+    restart: always
     volumes:
       - "./src:/app"
   dolphin-dashboard-backend-db:
 
     image: mariadb:10
+    restart: always
     volumes:
       - ./dbdata:/var/lib/mysql
     environment:
