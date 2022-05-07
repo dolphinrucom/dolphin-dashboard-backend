@@ -15,13 +15,14 @@ class Telegram extends Job
 
     public function run()
     {
-        if (!$this->canRun('10:00')) {
-            return;
-        }
+//        if (!$this->canRun('10:00')) {
+//            return;
+//        }
         $this->membersCountOfDolphinAnty();
         $this->membersCountOfDolphin();
         $this->membersCountOfOctoBrowser();
         $this->membersCountOfFbtool();
+        $this->membersCountOfFbtoolNews();
         $this->membersCountOfDolphinAntyNews();
         $this->membersCountOfDolphinNews();
         $this->membersCountOfIndigoBrowserNews();
@@ -74,5 +75,11 @@ class Telegram extends Job
     {
         $membersCount = $this->telegramService->membersCount('fbtoolpro');
         $this->dataModel->insert('telegram_members_chat_fbtool', $membersCount);
+    }
+
+    private function membersCountOfFbtoolNews()
+    {
+        $membersCount = $this->telegramService->membersCount('fbtool');
+        $this->dataModel->insert('telegram_members_news_fbtool', $membersCount);
     }
 }
