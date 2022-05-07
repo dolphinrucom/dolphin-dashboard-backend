@@ -7,7 +7,7 @@ use Models\Jira\Issue;
 use Models\Jira\Project;
 use Services\Jira as JiraService;
 
-class Jira
+class Jira extends Job
 {
     /**
      * @var JiraService
@@ -38,6 +38,10 @@ class Jira
 
     private function antySupportOpenedTickets()
     {
+        if (!$this->canRun('15:00')) {
+            return;
+        }
+
         $jql = 'project = AS2 AND status in (Backlog, "In Progress", "To Do")';
 
         $issuesCount = $this->issueModel->countAll($jql);
@@ -46,6 +50,10 @@ class Jira
 
     private function dolphinServerSupportOpenedTickets()
     {
+        if (!$this->canRun('15:00')) {
+            return;
+        }
+        
         $jql = 'project = DSS AND status in ("In Progress", "To Do") AND type IN (Bug, "Referral request")';
 
         $issuesCount = $this->issueModel->countAll($jql);
