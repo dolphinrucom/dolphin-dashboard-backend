@@ -1,11 +1,14 @@
 <?php
 
-use Jobs\Jira;
-
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/config/config.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
-$jiraJob = new Jira();
-$jiraJob->run();
+foreach ($config['cron']['jobs'] as $job) {
+    $jobClass = '\Jobs\\' . ucfirst($job);
+    $jobInstance = new $jobClass();
+
+    $jobInstance->run();
+}
