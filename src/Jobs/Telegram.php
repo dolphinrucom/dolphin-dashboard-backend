@@ -15,7 +15,7 @@ class Telegram extends Job
 
     public function run()
     {
-        if (!$this->every5Mins) {
+        if (!$this->every5Mins()) {
             return;
         }
         $this->membersCountOfDolphinAnty();
