@@ -3,7 +3,9 @@
 namespace Services;
 
 use GuzzleHttp\Client;
+use Models\Db\Data;
 use Models\Db\DolphinBackOffice;
+use Models\Db\Slr;
 use Models\Jira\Issue;
 
 class Jira
@@ -96,5 +98,76 @@ class Jira
         }
 
         return $revenue;
+    }
+
+    public function calculateSlrPerIssue($issues)
+    {
+        $this->slrModel = new Slr();
+
+        foreach ($issues as $issue) {
+            if ($issue->fields->status->name !== 'Done') {
+                continue;
+            }
+
+            $start = strtotime($issue->fields->created);
+            $end = $issue->fields->status->name === 'Done' ? strtotime($issue->fields->updated) : time();
+            $diff = $end - $start;
+            if ($diff < 60 * 10) {
+                continue;
+            }
+            $diffHours = round($diff / 60 / 60);
+
+            $this->slrModel->insert(
+                explode('-', $issue->key)[0],
+                $issue->key,
+                date('Y-m-d', strtotime($issue->fields->created)),
+                $diff,
+                $diffHours
+            );
+        }
+    }
+
+    public function calculateSlrPerDay($project)
+    {
+        $this->slrModel = new Slr();
+        $this->dataModel = new Data();
+
+        $issues = $this->slrModel->perProject($project);
+
+        $data = [];
+        $source = $project . '_slr';
+
+        foreach ($issues as $issue) {
+            $week = date('W', strtotime($issue['date_created']));
+            if (!isset($data[$week])) {
+                $data[$week] = [
+                    'total' => 0,
+                    'green' => 0,
+                    'red'   => 0
+                ];
+            }
+
+            $data[$week]['total']++;
+            if ($issue['hours'] <= $_ENV['SLR_THRESHOLD_HOURS']) {
+                $data[$week]['green']++;
+            } else {
+                $data[$week]['red']++;
+            }
+        }
+
+        $this->dataModel->deleteBySource($source);
+
+        foreach ($data as $weekNumber => $values) {
+            $data[$weekNumber]['slr'] = round(
+                ($values['green'] / $values['total']) * 100
+            );
+
+            $this->dataModel->insert(
+                $source,
+                $data[$weekNumber]['slr'],
+                date('Y-m-d', strtotime(date('Y') . 'W' . $weekNumber)),
+                date('Y-m-d H:i:s', strtotime(date('Y') . 'W' . $weekNumber))
+            );
+        }
     }
 }

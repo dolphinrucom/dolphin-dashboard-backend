@@ -3,6 +3,7 @@
 namespace Jobs;
 
 use Models\Db\Data;
+use Models\Db\Slr;
 use Models\Jira\Issue;
 use Models\Jira\Project;
 use Services\Jira as JiraService;
@@ -35,6 +36,32 @@ class Jira extends Job
         $this->antySupportOpenedIssues();
         $this->dolphinServerSupportOpenedIssues();
         $this->setRevenueForDolphinSupportIssues();
+        $this->calculateAntySLR();
+        $this->calculateDolphinServerSLR();
+    }
+
+    private function calculateAntySLR()
+    {
+        if (!$this->canRun('18:00')) {
+            return;
+        }
+
+        $jql = 'project = "AS2" ORDER BY created DESC';
+        $issues = $this->issueModel->all($jql);
+        $this->jiraService->calculateSlrPerIssue($issues);
+        $this->jiraService->calculateSlrPerDay('AS2');
+    }
+
+    private function calculateDolphinServerSLR()
+    {
+        if (!$this->canRun('18:00')) {
+            return;
+        }
+
+        $jql = 'project = "DSS" ORDER BY created DESC';
+        $issues = $this->issueModel->all($jql);
+        $this->jiraService->calculateSlrPerIssue($issues);
+        $this->jiraService->calculateSlrPerDay('DSS');
     }
 
     private function antySupportOpenedIssues()
