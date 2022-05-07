@@ -38,9 +38,9 @@ class Jira extends Job
 
     private function antySupportOpenedTickets()
     {
-        if (!$this->canRun('15:00')) {
-            return;
-        }
+//        if (!$this->canRun('15:00')) {
+//            return;
+//        }
 
         $jql = 'project = AS2 AND status in (Backlog, "In Progress", "To Do")';
 
@@ -53,7 +53,7 @@ class Jira extends Job
         if (!$this->canRun('15:00')) {
             return;
         }
-        
+
         $jql = 'project = DSS AND status in ("In Progress", "To Do") AND type IN (Bug, "Referral request")';
 
         $issuesCount = $this->issueModel->countAll($jql);
