@@ -5,6 +5,8 @@ services:
     restart: always
     volumes:
       - "./src:/app"
+      - "./crontab:/etc/crontab"
+    container_name: dolphin-dashboard-backend-php
   dolphin-dashboard-backend-db:
 
     image: mariadb:10
