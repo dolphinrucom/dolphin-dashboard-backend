@@ -63,10 +63,10 @@ class Jira extends Job
 
     private function setRevenueForDolphinSupportIssues()
     {
-        if (!$this->every10Mins()) {
+        if (!$this->every5Mins()) {
             return;
         }
-        
+
         $jql = 'project = DSS AND status in ("To Do") AND type IN (Bug)';
         $issues = $this->issueModel->all($jql);
 
