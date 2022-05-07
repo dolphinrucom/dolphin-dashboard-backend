@@ -38,9 +38,9 @@ class Jira extends Job
 
     private function antySupportOpenedTickets()
     {
-//        if (!$this->canRun('15:00')) {
-//            return;
-//        }
+        if (!$this->canRun('15:00')) {
+            return;
+        }
 
         $jql = 'project = AS2 AND status in (Backlog, "In Progress", "To Do")';
 
