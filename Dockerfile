@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y cron && which cron && \
 
 WORKDIR /app
 
-COPY --chmod=777 ./entrypoint.sh /entrypoint.sh
+#COPY --chmod=777 ./entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
 CMD ["cron","-f", "-l", "2"]
