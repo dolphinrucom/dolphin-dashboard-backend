@@ -42,9 +42,9 @@ class Jira extends Job
 
     private function calculateAntySLR()
     {
-//        if (!$this->canRun('18:00')) {
-//            return;
-//        }
+        if (!$this->canRun('15:00')) {
+            return;
+        }
 
         $jql = 'project = "AS2" ORDER BY created DESC';
         $issues = $this->issueModel->all($jql);
@@ -54,9 +54,9 @@ class Jira extends Job
 
     private function calculateDolphinServerSLR()
     {
-//        if (!$this->canRun('18:00')) {
-//            return;
-//        }
+        if (!$this->canRun('15:00')) {
+            return;
+        }
 
         $jql = 'project = "DSS" ORDER BY created DESC';
         $issues = $this->issueModel->all($jql);
