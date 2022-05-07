@@ -32,11 +32,12 @@ class Jira extends Job
 
     public function run()
     {
-        $this->antySupportOpenedTickets();
-        $this->dolphinServerSupportOpenedTickets();
+        $this->antySupportOpenedIssues();
+        $this->dolphinServerSupportOpenedIssues();
+        $this->setRevenueForDolphinSupportIssues();
     }
 
-    private function antySupportOpenedTickets()
+    private function antySupportOpenedIssues()
     {
         if (!$this->canRun('15:00')) {
             return;
@@ -48,7 +49,7 @@ class Jira extends Job
         $this->dataModel->insert('anty_support_issues_count', $issuesCount);
     }
 
-    private function dolphinServerSupportOpenedTickets()
+    private function dolphinServerSupportOpenedIssues()
     {
         if (!$this->canRun('15:00')) {
             return;
@@ -58,5 +59,17 @@ class Jira extends Job
 
         $issuesCount = $this->issueModel->countAll($jql);
         $this->dataModel->insert('dolphin_server_support_issues_count', $issuesCount);
+    }
+
+    private function setRevenueForDolphinSupportIssues()
+    {
+        if (!$this->every10Mins()) {
+            return;
+        }
+        
+        $jql = 'project = DSS AND status in ("To Do") AND type IN (Bug)';
+        $issues = $this->issueModel->all($jql);
+
+        $this->jiraService->assignRevenueForDolphinServerIssues($issues);
     }
 }

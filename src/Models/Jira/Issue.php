@@ -28,4 +28,26 @@ class Issue extends \Models\RestApi
 
         return $this->parseJsonResponse($res)->total;
     }
+
+    public function all(string $jql)
+    {
+        $res = $this->jiraRestApiClient->get('search', [
+            'query' => [
+                'jql'        => $jql,
+                'maxResults' => 100
+            ]
+        ]);
+
+        return $this->parseJsonResponse($res)->issues;
+    }
+
+    public function update(string $issueKey, array $data): void
+    {
+        $this->jiraRestApiClient->put(
+            'issue/' . $issueKey,
+            [
+                'json' => $data
+            ]
+        );
+    }
 }

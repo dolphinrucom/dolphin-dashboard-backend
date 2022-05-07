@@ -8,4 +8,12 @@ class Job
     {
         return date('H:i') === $time;
     }
+
+    protected function every10Mins()
+    {
+        return in_array(
+            date('m'),
+            ['00', '10', '20', '30', '40', '50', '60']
+        );
+    }
 }
