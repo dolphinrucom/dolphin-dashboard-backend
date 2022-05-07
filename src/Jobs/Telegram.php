@@ -15,9 +15,9 @@ class Telegram extends Job
 
     public function run()
     {
-        if (!$this->canRun('10:00')) {
-            return;
-        }
+//        if (!$this->canRun('10:00')) {
+//            return;
+//        }
         $this->membersCountOfDolphinAnty();
         $this->membersCountOfDolphin();
         $this->membersCountOfOctoBrowser();
@@ -37,7 +37,7 @@ class Telegram extends Job
     private function membersCountOfDolphinAntyNews()
     {
         $membersCount = $this->telegramService->membersCount('dolphin_anty_news');
-        $this->dataModel->insert('telegram_members_new_dolphin_anty', $membersCount);
+        $this->dataModel->insert('telegram_members_news_dolphin_anty', $membersCount);
     }
 
     private function membersCountOfDolphin()
@@ -61,7 +61,7 @@ class Telegram extends Job
     private function membersCountOfIndigoBrowserNews()
     {
         $membersCount = $this->telegramService->membersCount('indigobrowser');
-        $this->dataModel->insert('telegram_members_new_indigo_browser', $membersCount);
+        $this->dataModel->insert('telegram_members_news_indigo_browser', $membersCount);
     }
 
     private function membersCountOfOctoBrowserNews()
