@@ -1,7 +1,8 @@
 <?php
 
 $config['cron']['jobs'] = [
-//    'jira',
-//    'telegram',
-    'git'
+    'jira',
+    'telegram',
+    'git',
+    'anty'
 ];
