@@ -19,9 +19,9 @@ class Anty extends Job
 
     public function refRegsByDay()
     {
-//        if ($this->canRun('04:00')) {
-//            return;
-//        }
+        if ($this->canRun('04:00')) {
+            return;
+        }
 
         $this->dataModel->deleteBySource('anty_ref_regs_by_day');
 
