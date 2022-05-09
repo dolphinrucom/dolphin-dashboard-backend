@@ -21,9 +21,9 @@ class Git extends Job
 
     private function countAntyLines()
     {
-//        if (!$this->canRun('18:00')) {
-//            return;
-//        }
+        if (!$this->canRun('18:00')) {
+            return;
+        }
 
         $backendLines = $this->gitService->countLines($_ENV['GIT_REPO_ANTY_BACKEND']);
         $frontendLines = $this->gitService->countLines($_ENV['GIT_REPO_ANTY_FRONTEND']);
@@ -40,9 +40,9 @@ class Git extends Job
 
     private function countDocsChars()
     {
-//        if (!$this->canRun('18:00')) {
-//            return;
-//        }
+        if (!$this->canRun('18:00')) {
+            return;
+        }
 
         $charsCount = $this->gitService->countChars($_ENV['GIT_REPO_DOCS'], 'pages', '.md');
         $this->dataModel->insert('chars_count_docs_total', $charsCount);
