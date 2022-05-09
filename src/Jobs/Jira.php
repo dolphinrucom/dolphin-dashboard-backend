@@ -70,7 +70,7 @@ class Jira extends Job
             return;
         }
 
-        $jql = 'project = AS2 AND status in (Backlog, "In Progress", "To Do")';
+        $jql = 'project = AS2 AND status != Done';
 
         $issuesCount = $this->issueModel->countAll($jql);
         $this->dataModel->insert('anty_support_issues_count', $issuesCount);
@@ -82,7 +82,7 @@ class Jira extends Job
             return;
         }
 
-        $jql = 'project = DSS AND status in ("In Progress", "To Do") AND type IN (Bug, "Referral request")';
+        $jql = 'project = DSS AND status != Done AND type IN (Bug, "Referral request")';
 
         $issuesCount = $this->issueModel->countAll($jql);
         $this->dataModel->insert('dolphin_server_support_issues_count', $issuesCount);

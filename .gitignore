@@ -1,6 +1,7 @@
 dbdata
 .env
 .idea
+tmp
 
 ##### Windows
 # Windows thumbnail cache files
