@@ -10,8 +10,6 @@ class Telegram
 
         preg_match('/[\d ]+ (members|subscribers)/m', $html, $matches);
 
-        var_dump($matches);
-
         if (!empty($matches)) {
             return (int)str_replace(' ', '', $matches[0]);
         }
